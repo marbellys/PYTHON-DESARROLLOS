@@ -9,7 +9,7 @@ pages = pdfReader.numPages
 print(pages)
 speaker = pyttsx3.init()
 text=''
-for i in range(0,pages):
+for i in range(pages):
     page = pdfReader.getPage(i)
     text = text + page.extractText()
 speaker.say(text)
