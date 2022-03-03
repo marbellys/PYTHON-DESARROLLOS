@@ -1,0 +1,35 @@
+Sigue estos pasos para
+Convertir cualquier libro electrónico en audiolibro:
+
+1.- Intasle la libreria pyttsx3:
+    pip install pyttsx3
+
+2.- Probar la libreria con las siguientes lineas:
+    import pyttsx3
+    speaker = pyttsx3.init()
+    speaker.say('Hey look I can speak')
+    speaker.runAndWait()
+
+3.- Extraer el PDF
+    el archivo pdf debe guardarse en la misma ruta donde esta mi carpeta de trabajo
+
+4.-Intalar el  paquete de python para leer el archivo pdf:
+  pip install PyPDF2
+
+5.- colocar estas lineas en el archivo python, en mi caso el archivo pdf se llama: Los gatos.pdf.
+Si ejecutas el código, puede ver el número de páginas en la consola. Que será exactamente el mismo que estaba en su pdf.
+
+import pyttsx3
+import PyPDF2
+book = open('Los gatos.pdf', 'rb')
+pdfReader = PyPDF2.PdfFileReader(book)
+pages = pdfReader.numPages
+print(pages)
+speaker = pyttsx3.init()
+text=''
+for i in range(0,pages):
+    page = pdfReader.getPage(i)
+    text = text + page.extractText()
+speaker.say(text)
+speaker.runAndWait()
+
